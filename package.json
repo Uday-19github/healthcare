@@ -1,0 +1,16 @@
+{
+  "name": "medicare-plus",
+  "version": "1.0.0",
+  "description": "MediCare+ — Healthcare website with Formspree integration",
+  "type": "module",
+  "scripts": {
+    "generate": "node build-pages.js && node swap-specbar.js && node swap-treatment-grid.js",
+    "dev": "npm run generate && vite",
+    "start": "npm run generate && vite",
+    "build": "npm run generate && node -e \"require('fs').copyFileSync('script.js','public/script.js')\" && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^5.4.10"
+  }
+}
