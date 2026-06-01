@@ -38,6 +38,11 @@ fs.mkdirSync(specialtiesDir, { recursive: true });
 // Reusable HTML chunks
 const FORMSPREE = 'https://formspree.io/f/xvzlpngn';
 
+const FAVICON_LINKS = `
+<link rel="icon" type="image/png" href="${'../../'}assets/logo.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="${'../../'}assets/logo.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="${'../../'}assets/logo.png" />`;
+
 const cityOptions = cities.map(c => `<option>${c}</option>`).join('');
 const allTreatmentOptions = Object.values(treatments)
   .map(t => `<option value="${t.name}">${t.name}</option>`)
@@ -109,7 +114,7 @@ function buildHeader(prefix = '') {
   <div class="container top-strip__inner">
     <span class="ts-pill">🏥 NABH Accredited Hospitals</span>
     <span class="ts-text">Cashless Insurance · No-Cost EMI · Free Pickup &amp; Drop</span>
-    <a class="ts-call" href="${CONTACT_PHONE_TEL_1}">📞 ${CONTACT_PHONE_1}</a> / <a class="ts-call" href="${CONTACT_PHONE_TEL_2}">${CONTACT_PHONE_2}</a>
+<a class="ts-call" href="${CONTACT_PHONE_TEL_1}">📞${CONTACT_PHONE_1}</a><a class="ts-call" href="${CONTACT_PHONE_TEL_2}">${CONTACT_PHONE_2}</a>
   </div>
 </div>
 
@@ -204,7 +209,7 @@ function buildFooter(prefix = '') {
       ${buildLogo(prefix, true)}
       <p>Pioneering surgical healthcare across India. Advanced laser &amp; laparoscopic techniques, evidence-based care, and a team that treats you like family.</p>
       <ul class="footer__contact">
-        <li><span>📞</span> <a href="${CONTACT_PHONE_TEL_1}">${CONTACT_PHONE_1}</a> / <a href="${CONTACT_PHONE_TEL_2}">${CONTACT_PHONE_2}</a></li>
+        <li><span>📞</span> <a href="${CONTACT_PHONE_TEL_1}">${CONTACT_PHONE_1}</a><span aria-hidden="true">/</span><a href="${CONTACT_PHONE_TEL_2}">${CONTACT_PHONE_2}</a></li>
         <li><span>✉️</span> <a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a></li>
       </ul>
       <div class="footer__social">
@@ -292,6 +297,7 @@ function buildTreatmentPage(t) {
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+${FAVICON_LINKS}
 <link rel="stylesheet" href="../../styles.css" />
 </head>
 <body>
@@ -476,7 +482,7 @@ ${buildSpecBar('treatments')}
       <div class="t-sidebar__cta">
         <h4>Need help deciding?</h4>
         <p>Talk to our care coordinator — free, no obligation.</p>
-        <a href="${CONTACT_PHONE_TEL_1}" class="btn btn--primary btn--block">📞 Call ${CONTACT_PHONE_1} / ${CONTACT_PHONE_2}</a>
+        <a href="${CONTACT_PHONE_TEL_1}" class="btn btn--primary btn--block">📞 Call ${CONTACT_PHONE_1}<span aria-hidden="true">/</span>${CONTACT_PHONE_2}</a>
       </div>
     </aside>
   </div>

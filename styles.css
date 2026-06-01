@@ -212,7 +212,7 @@ h1 em, h2 em {
 .top-strip__inner {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 8px;
   padding: 9px 24px;
   flex-wrap: wrap;
   justify-content: center;
@@ -224,7 +224,10 @@ h1 em, h2 em {
   font-weight: 500;
 }
 .ts-text { opacity: .85; }
-.ts-call { color: white; font-weight: 600; }
+.ts-call { color: white; font-weight: 600; display: inline-flex; white-space: nowrap; }
+.top-strip__inner .ts-call + .ts-call { margin-left: 0; padding-left: 0; }
+/* FAQ phone links */
+.faq__intro .btn--ghost + .btn--ghost { margin-left: 0; padding-left: 0; }
 .ts-call:hover { color: var(--brand-green-light); }
 
 /* ============== HEADER ============== */
@@ -1932,11 +1935,128 @@ h1 em, h2 em {
   .trust-bar__inner { grid-template-columns: 1fr; }
   .tb-item { border-right: 0; border-bottom: 1px solid rgba(255,255,255,.1); padding-bottom: 14px; }
   .tb-item:last-child { border-bottom: 0; }
+
+  /* Top-strip: keep helpline phone numbers in single line (all mobile pages) */
+.top-strip__inner { flex-wrap: nowrap; flex-direction: row; align-items: center; }
+  .top-strip__inner .ts-call,
+  .top-strip__inner .ts-call + .ts-call {
+    display: inline-flex !important;
+    flex: 0 0 auto;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: clip;
+  }
+
+
+  /* Make trust-bar numbers stay in a single line on mobile */
+  .tb-item { 
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: center;
+    gap: 8px;
+    text-align: left;
+    white-space: nowrap;
+  }
+  .tb-num { 
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+  .tb-item span:not(.tb-num) { 
+    white-space: nowrap;
+  }
   .hero__title { font-size: 38px; }
   .stat__num { font-size: 26px; }
+
+  /* Keep hero stats (number + label) on one line in mobile */
+  .hero__stats {
+    grid-template-columns: 1fr 1fr;
+    row-gap: 14px;
+  }
+
+  .hero__stats .stat {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    gap: 8px;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+  }
+
+  /* keep number + label on a single line */
+  .hero__stats .stat__num {
+    display: inline-block;
+    white-space: nowrap;
+    flex: 0 0 auto;
+  }
+
+  .hero__stats .stat__label {
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex: 1 1 auto;
+  }
+
+
+
+
+  /* Top strip: keep NABH + both phone numbers on one line */
+  .top-strip__inner {
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+  }
+
+
+  /* Line 1: pill (NABH) */
+  .top-strip__inner .ts-pill {
+    display: inline-flex;
+    white-space: nowrap;
+    line-height: 1.2;
+  }
+
+  /* Line 2: show only the phone numbers, all in one line */
+  .top-strip__inner {
+    /* keep the phone links on a single line */
+    flex-wrap: nowrap;
+  }
+
+  .top-strip__inner .ts-text {
+    display: none;
+  }
+
+  .top-strip__inner .ts-call,
+  .top-strip__inner .ts-call + .ts-call {
+    display: inline-flex;
+    white-space: nowrap;
+    line-height: 1.2;
+    flex: 0 0 auto;
+  }
+
+
+  /* Keep tel links on a single line */
+  a[href^="tel:"],
+  a[href^="tel:"] span,
+  a[href^="tel:"] strong {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* In case a wrapper uses flex that allows wrapping */
+  .ts-call,
+  .faq__intro a[href^="tel:"],
+  .footer__contact a,
+  .contact__list a[href^="tel:"] {
+    white-space: nowrap;
+  }
+
   .hero__ctas { flex-direction: column; }
   .hero__ctas .btn { width: 100%; }
 }
+
+
+
 
 /* ============== UTILITY ANIMATIONS ============== */
 @media (prefers-reduced-motion: reduce) {
