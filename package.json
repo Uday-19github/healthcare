@@ -7,7 +7,7 @@
     "generate": "node build-pages.js && node swap-specbar.js && node swap-treatment-grid.js",
     "dev": "npm run generate && vite",
     "start": "npm run generate && vite",
-    "build": "npm run generate && node -e \"require('fs').copyFileSync('script.js','public/script.js')\" && vite build",
+"build": "npm run generate && node -e \"require('fs').copyFileSync('script.js','public/script.js')\" && node seo-audit-check.js && vite build && node sitemap.js",
     "preview": "vite preview"
   },
   "devDependencies": {
